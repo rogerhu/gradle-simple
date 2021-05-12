@@ -7,11 +7,19 @@ sourceCompatibility = 1.8 // java 8
 targetCompatibility = 1.8
 
 repositories {
-  mavenCentral()
+  maven {
+    // rm -rf ~/.m2/repository/io/grpc/
+    // rm -rf /Users/rogerh/.gradle/caches/modules-2/files-2.1/io.grpc/
+
+    // ssh -L 8080:localhost:32589 <artifactory_host>
+
+    url "http://localhost:8080/artifactory/maven-central-cache"
+  }
 }
 
 dependencies {
-  implementation 'com.google.guava:guava:29.0-jre'
+  implementation group: 'io.grpc', name: 'grpc-api', version: '1.21.0'
+
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
